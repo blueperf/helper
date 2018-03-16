@@ -3,7 +3,7 @@ Helper script makes it easier to deploy Acmeair to IBM Container Service (Kubern
 ## Scripts
 These are the scrpts that helps creating the Acmeair Microservices
 - **IBMCloud_CS.sh** : This script supports these following operations.  Created Apps to use Ingress Controller (note, ingress.yaml file might need to be manually run. e.g. kubectl create -f ingress.yaml)
-  - Install CLI pligins
+  - Install CLI plugins
   - Login
   - Clone Github
   - Deploy Containers to IBM Container Service
@@ -28,8 +28,6 @@ Edit the script (IBMCloud_CS.sh) to enter these values
   - Kubernetes Cluster that you have created (Free cluster will not work for the Acmeair Microservices). 
   - Following command will display your current clusters
     - bx cs clusters
-- REGISTRY
-  - Default IBM Cloud Registry at registry.${REGION}.bluemix.net. If docker repository hosted in https://cloud.docker.com is used, change the registry name to your docker username, then add docker password
 - NAMESPACE
   - Namespace created in the IBM Container Registry to save the Docker Images. 
   - Following command will display your current namespaces
@@ -76,7 +74,7 @@ Running ./IBMCloud_CS.sh will give you brief command options
       
 - Deploy Containers to IBM Container Service (Kubernetes).  This command will build war file, create & push the docker image to the IBM Container Registry/Docker Repository, then create deployments, pods, services, etc into the specified IBM Container Services. 
   - ./IBMCloud_CS.sh -d
-  -Note: If you are using free Container Registry, it might reach maximum allowed **storage** and **pull traffic**. Please check with the command **bx cr quota**.  If the storage is reached to maximum, please delete "Authentication service" image (bx cr image-rm registry.ng.bluemix.net/moss_perf/auth-go) **AFTER** deploying to the Kubernetes.  These images are used to recover failures & auto Scaling.  If you see "ImagePulledOff" in kubectl get pods, that means either the image does not exist, or it reached to maximum pull traffic for the month.
+  - Note: If you are using free Container Registry, it might reach maximum allowed **storage** and **pull traffic**. Please check with the command **bx cr quota**.  If the storage is reached to maximum, please delete "Authentication service" image (bx cr image-rm registry.ng.bluemix.net/moss_perf/auth-go) **AFTER** deploying to the Kubernetes.  These images are used to recover failures & auto Scaling.  If you see "ImagePulledOff" in kubectl get pods, that means either the image does not exist, or it reached to maximum pull traffic for the month.
 
 - To Undeploy Containers from IBM Container Service, run the following command
   - ./IBMCloud_CS.sh -u
