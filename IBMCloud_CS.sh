@@ -86,7 +86,8 @@ if [[ "$LOGIN" = true && -n "${API_KEY// }" ]] ; then
   ./scripts/login_bluemix.sh -a ${API_KEY} -c ${CLUSTER_NAME} -s ${SPACE} -r ${REGION}
 fi
 
-declare -a arr=("acmeair-authservice-java" "acmeair-bookingservice-java" "acmeair-customerservice-java" "acmeair-flightservice-java")
+#declare -a arr=("acmeair-authservice-java" "acmeair-bookingservice-java" "acmeair-customerservice-java" "acmeair-flightservice-java")
+declare -a arr=("acmeair-bookingservice-java")
 if [[ "$CLONE" = true ]] ; then
   printf "${cyn}Cloning Acmair Homogeneous Java Microservice${end}\n"
   for i in "${arr[@]}"
@@ -109,13 +110,14 @@ if [[ "$DEPLOY" = true ]] ; then
     fi
     echo ${IMAGE_NAME}
     ./scripts/create_image.sh -i ${IMAGE_NAME} -d ${i} -f "Dockerfile"
-    ./scripts/create_deployment.sh -c ${CLUSTER_NAME} -i ${IMAGE_NAME} -d ${i} -y manifests/deploy-${i}.yaml 
+    ./scripts/create_deployment.sh -c ${CLUSTER_NAME} -i ${IMAGE_NAME} -d ${i}/manifests-demo -y deploy-${i}.yaml -ing true
   done
 fi
 
 if [[ "$UNDEPLOY" = true ]] ; then
   for i in "${arr[@]}"
   do
-    kubectl delete -f ${i}/manifests/deploy-${i}.yaml
+    kubectl delete -f ${i}/manifests-demo/deploy-${i}.yaml || true
+    kubectl delete -f ${i}/manifests-demo/ing.yaml || true
   done
 fi
