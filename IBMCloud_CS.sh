@@ -3,9 +3,6 @@ set -e
 ##################################################
 ####ENTER THESE VARIABLES TO USE THIS SCRIPT####
 ##################################################
-#To clone the code from GITHUB, GIT_PERSONAL_ACCESS_TOKEN is needed (option -c). If cloning is not needed, token is not nevessary
-GIT_PERSONAL_ACCESS_TOKEN=
-
 #API_KEY is needed for bx commands for authentication
 API_KEY=
 CLUSTER_NAME=
