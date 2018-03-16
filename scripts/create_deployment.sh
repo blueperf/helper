@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 # Terminal Colors
 red=$'\e[1;31m'

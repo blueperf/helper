@@ -86,8 +86,7 @@ if [[ "$LOGIN" = true && -n "${API_KEY// }" ]] ; then
   ./scripts/login_bluemix.sh -a ${API_KEY} -c ${CLUSTER_NAME} -s ${SPACE} -r ${REGION}
 fi
 
-#declare -a arr=("acmeair-authservice-java" "acmeair-bookingservice-java" "acmeair-customerservice-java" "acmeair-flightservice-java")
-declare -a arr=("acmeair-bookingservice-java")
+declare -a arr=("acmeair-authservice-java" "acmeair-bookingservice-java" "acmeair-customerservice-java" "acmeair-flightservice-java")
 if [[ "$CLONE" = true ]] ; then
   printf "${cyn}Cloning Acmair Homogeneous Java Microservice${end}\n"
   for i in "${arr[@]}"
