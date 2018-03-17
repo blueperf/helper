@@ -127,9 +127,26 @@ if [[ "$DEPLOY" = true ]] ; then
   done
 fi
 
+# Getting Cluster Configuration
+unset KUBECONFIG
+echo "${grn}Getting configuration for cluster ${CLUSTER_NAME}...${end}"
+bx cs cluster-config ${CLUSTER_NAME}
+eval "$(bx cs cluster-config ${CLUSTER_NAME} | tail -1)"
+echo "KUBECONFIG is set to = $KUBECONFIG"
+
 if [[ "$PAUSE" = true ]] ; then
   printf "${grn}Pausing 2 minutes for Pods to be created & Liberty Server to startup${end}\n"
   sleep 120
+  # Getting Cluster Configuration
+  unset KUBECONFIG
+  echo "${grn}Getting configuration for cluster ${CLUSTER_NAME}...${end}"
+  bx cs cluster-config ${CLUSTER_NAME}
+  eval "$(bx cs cluster-config ${CLUSTER_NAME} | tail -1)"
+  echo "KUBECONFIG is set to = $KUBECONFIG"
+  if [[ -z "${KUBECONFIG// }" ]]; then
+        echo "KUBECONFIG was not properly set. Exiting"
+        exit 1
+  fi
   kubectl get deploy | grep acmeair
 fi
 
@@ -145,6 +162,16 @@ if [[ "$DB" = true ]] ; then
 fi
 
 if [[ "$UNDEPLOY" = true ]] ; then
+  # Getting Cluster Configuration
+  unset KUBECONFIG
+  echo "${grn}Getting configuration for cluster ${CLUSTER_NAME}...${end}"
+  bx cs cluster-config ${CLUSTER_NAME}
+  eval "$(bx cs cluster-config ${CLUSTER_NAME} | tail -1)"
+  echo "KUBECONFIG is set to = $KUBECONFIG"
+  if [[ -z "${KUBECONFIG// }" ]]; then
+        echo "KUBECONFIG was not properly set. Exiting"
+        exit 1
+  fi
   for i in "${arr[@]}"
   do
     if [[ ${i} = *"auth"* ]] ; then

@@ -80,6 +80,12 @@ Running ./IBMCloud_CS.sh will give you brief command options
   - ./IBMCloud_CS.sh -u
   
 ## Post Operation ##
+
+Setup the KUBECONFIG
+- While creating the Acmeair pods in your cluster, you see something as follows.  Please export the KUBECONFIG so that kubectl is pointed to your cluster:
+  - The configuration for CLUSTER_NAME was downloaded successfully. Export environment variables to start using Kubernetes.
+  - export KUBECONFIG=/root/.bluemix/plugins/container-service/clusters/XXX/kube-config-XXX-XXX.yml
+
 Verify that all deployments are running
 - kubectl get deploy
 
