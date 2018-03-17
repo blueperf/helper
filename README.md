@@ -59,6 +59,9 @@ Edit the script (IBMCloud_CS.sh) to enter these values
 Running ./IBMCloud_CS.sh will give you brief command options
 - To Install the Prereq CLIs, run the following command
   - ./IBMCloud_CS.sh -p
+
+- To Run below -l, -c, -d and -db commands all together (Install all prereqs with ./IBMCloud_CS.sh -p before running this command, then Acmeair Microservices will be up and running)
+  - ./IBMCloud_CS.sh -a
   
 - To login IBM Cloud CLI, run the following command
   - ./IBMCloud_CS.sh -l
@@ -72,9 +75,6 @@ Running ./IBMCloud_CS.sh will give you brief command options
 
 - To Populate Acmeair DBs, run the following command
   - ./IBMCloud_CS.sh -db
-
-- To Run above -l, -c, -d and -db commands (Install all prereqs with ./IBMCloud_CS.sh -p before running this command, then Acmeair Microservices will be up and running)
-  - ./IBMCloud_CS.sh -a
 
 - To Undeploy Containers from IBM Container Service, run the following command
   - ./IBMCloud_CS.sh -u
