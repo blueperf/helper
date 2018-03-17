@@ -18,6 +18,8 @@ In order to build Java Images, the hosting server must be **Linux**.  Also, [doc
 
 run command **mvn** to verify that maven is properly installed.
 
+Verify that docker daemon is running on your linux.
+
 Run the following to get the helper scripts
 - git clone https://github.com/blueperf/helper
 
