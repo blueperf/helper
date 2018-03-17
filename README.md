@@ -7,7 +7,7 @@ These are the scrpts that helps creating the Acmeair Microservices
   - Login
   - Clone Github
   - Deploy Containers to IBM Container Service
-  - Populate Databaases
+  - Populate Databases
   - Undeploy Containers from IBM Container Service
   
 - **removeImages.sh** :This script helps deleting the images created in the IBM Container Registry. Optionally, it can delete all containers & images created on the local job execution box on Linux (Please uncomment within the script to enable optional feature)
