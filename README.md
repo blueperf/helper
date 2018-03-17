@@ -7,6 +7,7 @@ These are the scrpts that helps creating the Acmeair Microservices
   - Login
   - Clone Github
   - Deploy Containers to IBM Container Service
+  - Populate Databaases
   - Undeploy Containers from IBM Container Service
   
 - **removeImages.sh** :This script helps deleting the images created in the IBM Container Registry. Optionally, it can delete all containers & images created on the local job execution box on Linux (Please uncomment within the script to enable optional feature)
@@ -52,15 +53,6 @@ Edit the script (IBMCloud_CS.sh) to enter these values
 - IMAGE_TAG
   - Default "latest".  Change it to create multiple versions of the images using this tag. 
 
-Mongo DB connection information variables need to be set.  Please create a Mongo DB using [Compose site](https://app.compose.io), then create user/password for the database.  If using the same Database, set **DB=your DB name**.  If you are using separate DB for each services, please create individual DBs (acmeair_bookingdb, acmeair_customerdb, acmeair_flightdb)
-- HOST
-- PORT
-- USER
-- PASSWORD
-
-Default value for DB is "SEPARATE".  If needs to use the same DB, change the following DB name to specific
-- DB=SEPARATE
-
 ## Downloading, Building, and Deploying
 Running ./IBMCloud_CS.sh will give you brief command options
 - To Install the Prereq CLIs, run the following command
@@ -76,6 +68,9 @@ Running ./IBMCloud_CS.sh will give you brief command options
   - ./IBMCloud_CS.sh -d
   - Note: If you are using free Container Registry, it might reach maximum allowed **storage** and **pull traffic**. Please check with the command **bx cr quota**.  If the storage is reached to maximum, please delete "Authentication service" image (bx cr image-rm registry.ng.bluemix.net/moss_perf/auth-go) **AFTER** deploying to the Kubernetes.  These images are used to recover failures & auto Scaling.  If you see "ImagePulledOff" in kubectl get pods, that means either the image does not exist, or it reached to maximum pull traffic for the month.
 
+- To Populate Acmeair DBs, run the following command
+  - ./IBMCloud_CS.sh -db
+
 - To Undeploy Containers from IBM Container Service, run the following command
   - ./IBMCloud_CS.sh -u
   
@@ -85,21 +80,14 @@ Verify that all deployments are running
 
 Get the Application URL:
 - kubectl get ingress
-  - If used IBMCloud_CS.sh, use the hostname listed under "HOSTS" for the "NAME" **acme**
-  
-To populate the DB, run these commands:
-- http://**URL/SERVICE_NAME**/loader/load
-  - e.g.
-  - http://169.60.16.42/booking/loader/load
-  - http://169.60.16.42/customer/loader/load
-  - http://169.60.16.42/flight/loader/load
+  - If used IBMCloud_CS.sh, use the hostname listed under "HOSTS" for the "NAME" **acmeair-ingress**
   
  ## Stressing with jmeter
 - Install Oracle JDK (IBM JDK has performane issue with jMeter)
 - Install [jMeter](http://jmeter.apache.org/)
 - Download [json-simple](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/json-simple/json-simple-1.1.1.jar) & put into JMETER_HOME/lib/ext
 - Download [acmeair-jmeter-2.0.0-SNAPSHOT.jar](acmeair-jmeter-2.0.0-SNAPSHOT.jar) into JMETER_HOME/lib/ext
-- Download contents of [this directory](https://github.ibm.com/blueperf/acmeair-driver/tree/master/acmeair-jmeter/scripts)
+- Download contents of [this directory](https://github.com/blueperf/acmeair-driver/tree/master/acmeair-jmeter/scripts)
  
 - Warmup with the following command:
   - jmeter -n -t AcmeAir-microservices.jmx -DusePureIDs=true -JHOST=HOSTNAME/IP_ADDRESS -JPORT=80 -j acmeair.log -JTHREAD=1 -JUSER=999 -JDURATION=60 -JRAMP=0
