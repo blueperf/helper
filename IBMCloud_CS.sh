@@ -44,7 +44,7 @@ function usage {
     echo "${cyn}To Login, Clone, Deploy and Populate DB NOTE:It will pause 2 minutes before DB polulation. If DB is not populated, run -db separately${end}" $0 " [-a|--all]"
     echo "e.g.${grn} $0 -a${end}"
     echo "Details of all options:"
-    echo "  -a      Run above -l, -c, -d and -db commands"
+    echo "  -a      Run below -l, -c, -d and -db commands"
     echo "  -p      Install CLI and plugins"
     echo "  -l      Login IBM Cloud and Container Service"
     echo "  -c      Clone git repositories"
