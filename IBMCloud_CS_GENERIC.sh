@@ -4,17 +4,16 @@ set -e
 ####ENTER THESE VARIABLES TO USE THIS SCRIPT####
 ##################################################
 #API_KEY is needed for bx commands for authentication
-API_KEY=e1iFctD0F2RqRQp9Xq8uor8miuVvZbNWkbFYMCFXV95w
-CLUSTER_NAME=mossdal
+API_KEY=
+CLUSTER_NAME=
 #Default Dallas Region, dev space
 REGION=ng
 SPACE=dev
 
 #Default IBM Cloud Registry at registry.${REGION}.bluemix.net. If docker repository hosted in https://cloud.docker.com is used, change the registry name to your docker username, then add docker password
-#REGISTRY=registry.${REGION}.bluemix.net
-REGISTRY=mossuchida
+REGISTRY=registry.${REGION}.bluemix.net
 NAMESPACE=
-DOCKER_PASSWORD=think4me
+DOCKER_PASSWORD=
 IMAGE_TAG=latest
 #IMAGE_TAG=test
 
