@@ -90,7 +90,7 @@ if [ "$CLI" = true ] ; then
   ./scripts/install_cli.sh 
 fi
 if [[ "$LOGIN" = true && -n "${API_KEY// }" ]] ; then
-  printf "${grn}Running login_IBM Cloud.sh with ${API_KEY} ${SPACE} ${REGION}${end}\n"
+  printf "${grn}Running login_ibmcloud.sh with ${API_KEY} ${SPACE} ${REGION}${end}\n"
   ./scripts/login_ibmcloud.sh -a ${API_KEY} -c ${CLUSTER_NAME} -s ${SPACE} -r ${REGION}
 fi
 
