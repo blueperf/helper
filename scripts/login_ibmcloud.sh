@@ -88,9 +88,9 @@ if [[ -z "${KUBECONFIG// }" ]]; then
 fi
 
 
-printf "\n\n${grn}Getting Account Information...${end}\n"
-ORG=$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name | sed 's/"//g')
-SPACE=$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name | sed 's/"//g')
+#printf "\n\n${grn}Getting Account Information...${end}\n"
+#ORG=$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name | sed 's/"//g')
+#SPACE=$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name | sed 's/"//g')
 
 # Creating for API KEY
 if [[ -z "${API_KEY// }" ]]; then
