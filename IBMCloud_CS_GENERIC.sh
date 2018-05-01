@@ -101,7 +101,7 @@ if [ "$CLI" = true ] ; then
 fi
 if [[ "$LOGIN" = true && -n "${API_KEY// }" ]] ; then
   printf "${grn}Running login_ibmcloud.sh with ${API_KEY} ${SPACE} ${REGION}${end}\n"
-  ./scripts/login_ibmcloud.sh -a ${API_KEY} -s ${SPACE} -r ${REGION}
+  ./scripts/login_ibmcloud.sh -a ${API_KEY} -s ${SPACE} -r ${REGION} -c ${CLUSTER_NAME}
 fi
 
 if [[ "$CLONE" = true ]] ; then
