@@ -56,7 +56,7 @@ Edit the script (IBMCloud_KS.sh) to enter these values
   - Default "latest".  Change it to create multiple versions of the images using this tag. 
 
 ## Downloading, Building, and Deploying
-Running ./IBMCloud_CS.sh will give you brief command options
+Running ./IBMCloud_KS.sh will give you brief command options
 - To Install the Prereq CLIs, run the following command
   - ./IBMCloud_KS.sh -p
 
@@ -91,7 +91,7 @@ Verify that all deployments are running
 
 Get the Application URL:
 - kubectl get ingress
-  - If used IBMCloud_CS.sh, use the hostname listed under "HOSTS" for the "NAME" **acmeair-ingress**
+  - If used IBMCloud_KS.sh, use the hostname listed under "HOSTS" for the "NAME" **acmeair-ingress**
   
  ## Stressing with jmeter
 - Install Oracle JDK (IBM JDK has performane issue with jMeter)
