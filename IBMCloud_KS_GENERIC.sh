@@ -41,6 +41,8 @@ function usage {
     echo "e.g.${grn} $0 -i -r acmeair-monolithic-java -f Dockerfile${end}"
     echo "${cyn}To Deploy an Image in Container Service${end}" $0 " [-d|--deploy] [-r|--repository] <REPOSITORY_NAME>"
     echo "e.g.${grn} $0 -d -r acmeair-monolithic-java ${end}"
+    echo "${cyn}To Undeploy Containers from the Container Service${end}" $0 " [-u|--undeploy]"
+    echo "e.g.${grn} $0 -u${end}"
     echo "Details of all options:"
     #echo "  -a      Perform all below operations"
     echo "  -p      Install CLI and plugins"
@@ -50,7 +52,8 @@ function usage {
     echo "  -i      Create an Image : Use along with -r and -f(optional) options"
     echo "  -d      Deploy an Image : Use along with -r option"
     echo "  -r      Repository Name (e.g. acmeair-monolithic-java, acmeair-monolithic-nodejs)"
-    echo "  -f      (Optional) Docker File Name - Default : Dockerfile_CS"
+    echo "  -f      (Optional) Docker File Name - Default : Dockerfile_IKS"
+    echo "  -u      Undeploy Containers"
     exit 1
 }
 
@@ -61,12 +64,13 @@ printf "Cluster : ${cyn}$CLUSTER_NAME${end}\n"
 printf "Namespace : ${cyn}$NAMESPACE${end}\n"
 
 BRANCH=master
-DOCKERFILE=Dockerfile_CS
+DOCKERFILE=Dockerfile_IKS
 LOGIN=false
 CLI=false
 CLONE=false
 IMAGE=false
 DEPLOY=false
+UNDEPLOY=false
 INGRESS=true
 REPOSITORY_NAME=
 
@@ -75,9 +79,10 @@ while true; do
     #-a | --all ) LOGIN=true;CLI=true;IMAGE=true;DEPLOY=true; shift;;
     -p | --prep ) CLI=true; shift;;
     -l | --login ) LOGIN=true; shift;;
+    -c | --clone ) CLONE=true; shift;;
     -i | --image ) IMAGE=true; shift ;;
     -d | --deploy ) DEPLOY=true; shift;;
-    -c | --clone ) CLONE=true; shift;;
+    -u | --undeploy ) UNDEPLOY=true; shift;;
     -b | --branch ) BRANCH="$2"; shift 2 ;;
     -r | --repository ) REPOSITORY_NAME="$2"; shift 2 ;;
     -f | --dockerfile ) DOCKERFILE="$2"; shift 2 ;;
@@ -118,3 +123,8 @@ if [[ "$DEPLOY" = true && -n "${REPOSITORY_NAME// }" && -n "${CLUSTER_NAME// }" 
   printf "${cyn}Running create_deployment.sh with ${CLUSTER_NAME} ${IMAGE_NAME} ${YAML_FILE} in ${DIRECTORY} with Ingress is ${INGRESS}${end}\n"
   ./scripts/create_deployment.sh -c ${CLUSTER_NAME} -i ${IMAGE_NAME} -y ${YAML_FILE} -d ${DIRECTORY} -ing ${INGRESS}
 fi
+
+if [[ "$UNDEPLOY" = true ]] ; then
+  kubectl delete -f  ./${DIRECTORY}/${YAML_FILE}
+fi
+                      
