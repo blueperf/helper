@@ -93,17 +93,5 @@ Get the Application URL:
 - kubectl get ingress
   - If used IBMCloud_KS.sh, use the hostname listed under "HOSTS" for the "NAME" **acmeair-ingress**
   
- ## Stressing with jmeter
-- Install Oracle JDK (IBM JDK has performane issue with jMeter)
-- Install [jMeter](http://jmeter.apache.org/)
-- Download [json-simple](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/json-simple/json-simple-1.1.1.jar) & put into JMETER_HOME/lib/ext
-- Download [acmeair-jmeter-2.0.0-SNAPSHOT.jar](acmeair-jmeter-2.0.0-SNAPSHOT.jar) into JMETER_HOME/lib/ext
-- Download contents of [this directory](https://github.com/blueperf/acmeair-driver/tree/master/acmeair-jmeter/scripts)
- 
-- Warmup with the following command:
-  - jmeter -n -t AcmeAir-microservices.jmx -DusePureIDs=true -JHOST=HOSTNAME/IP_ADDRESS -JPORT=80 -j acmeair.log -JTHREAD=1 -JUSER=999 -JDURATION=60 -JRAMP=0
- 
-- Run the following.  Change the options for the best performance
-  - -JTHREAD : Simulated Number of Users
- 
-  - jmeter -n -t AcmeAir-microservices.jmx -DusePureIDs=true -JHOST=HOSTNAME/IP_ADDRESS -JPORT=80 -j acmeair.log -JTHREAD=20 -JUSER=999 -JDURATION=600 -JRAMP=120
+ # Driving the load
+ - Follow the instruction [here](https://github.com/blueperf/acmeair-driver)
