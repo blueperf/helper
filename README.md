@@ -79,7 +79,7 @@ Running ./IBMCloud_KS.sh will give you brief command options
 - To Undeploy Containers from IBM Container Service, run the following command
   - ./IBMCloud_KS.sh -u
   
-## Post Operation ##
+## Post Operation
 
 Setup the KUBECONFIG
 - While creating the Acmeair pods in your cluster, you see something as follows.  Please export the KUBECONFIG so that kubectl is pointed to your cluster:
@@ -93,5 +93,5 @@ Get the Application URL:
 - kubectl get ingress
   - If used IBMCloud_KS.sh, use the hostname listed under "HOSTS" for the "NAME" **acmeair-ingress**
   
- # Driving the load
+ ## Driving the load
  - Follow the instruction [here](https://github.com/blueperf/acmeair-driver)
