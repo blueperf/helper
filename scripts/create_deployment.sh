@@ -72,7 +72,7 @@ printf "${blu}Deleting Temp yaml file${end}\n"
 rm temp.yaml
 
 if [ "$INGRESS" = true ] ; then
-  eval INGRESS_URL="$(bx cs cluster-get ${CLUSTER_NAME} | grep "Ingress Subdomain" | cut -f 2)"
+  eval INGRESS_URL="$(ibmcloud cs cluster-get  ${CLUSTER_NAME} | sed -n '/Ingress Subdomain/p' | awk '{print $3;}')"
   printf "${grn}Generating Temp Ingress yaml file for ing.yaml with ${INGRESS_URL}${end}\n"
   sed "s#INGRESS_URL#${INGRESS_URL}#g" ing.yaml > ingtemp.yaml
   printf "${blu}Creating Ingress Controller${end}\n"
