@@ -1,0 +1,44 @@
+h1 {
+	text-transform: uppercase;
+}
+
+title {
+	text-transform: uppercase;
+}
+
+body {
+  padding: 50px;
+  font-family: 14px "Trebuchet MS", Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#results {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#results td, #reseults th {
+  text-align: center;
+  padding: 8px;
+}
+
+
+#results tr:nth-child(even){background-color: #f2f2f2;}
+
+#results tr:hover {background-color: #ddd;}
+
+#results th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgba(128,128,128, 0.6);
+  color: white;
+}
+
+
+
